@@ -3,12 +3,13 @@ const express = require('express');
 const path = require('path'); // Esto me permitira tener staticos
 const app = express();
 
-
-const routesFile = require('./network/routes');
+// ROUTES
+// const routesFile = require('./network/routes');
 const tasksFile = require('./network/tasks');
 
 
-//SETTING  
+//STATIC
+ app.use(express.static(path.join(__dirname, 'client_dist')))
 
  // Integro la carpeta views para que express las pueda renderizas
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +28,7 @@ app.use(express.urlencoded({extended: false})); // recibir datos del url
 
 
 //ROUTES
-app.use(routesFile);
+// app.use(routesFile);
 app.use('/api',tasksFile); // cuando pido la ruta api del archivo task
 
 app.listen(app.get('port'), () => { //callback for verify app.listen on
