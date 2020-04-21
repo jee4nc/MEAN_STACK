@@ -1,11 +1,18 @@
 const cors = require('cors');
 const express = require('express');
+const path = require('path'); // Esto me permitira tener staticos
 const app = express();
+
+
 const routesFile = require('./network/routes');
 const tasksFile = require('./network/tasks');
 
 
 //SETTING  
+
+ // Integro la carpeta views para que express las pueda renderizas
+app.set('views', path.join(__dirname, 'views'));
+
 app.set('port', process.env.PORT || 3000); // si hay un port definido x el user se usa
                                             // si no, se ocupa el 3000
 
