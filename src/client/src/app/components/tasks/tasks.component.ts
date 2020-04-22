@@ -8,8 +8,10 @@ import { Task } from 'src/app/Task';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
+
   tasks_list : Task[];
   title: string;
+
   constructor(private taskserver: TasksService) { 
     this.taskserver.getTasks()
     .subscribe(tasks => {
@@ -20,4 +22,19 @@ export class TasksComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addTask(event) { // Recibe el evento
+    event.preventDefault();
+    console.log(this.title);
+
+    const newTask: Task = { // se crea la constante de tipo TaskModel
+      title: this.title,
+      isDone: false
+    };
+
+    this.taskserver.addTask(newTask) // Se llama al servicio, al metodo y se le da el const
+    .subscribe(task => {
+        this.tasks_list.push(task); //y( se pushea, agrega)
+        console.log(this.tasks_list);
+    });
+  }
 }

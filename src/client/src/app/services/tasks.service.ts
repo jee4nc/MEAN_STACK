@@ -18,7 +18,7 @@ export class TasksService {
   }
 
   addTask(newTask: Task) {
-    const add_task = this.http.post(`${this.domain}api/tasks`, newTask)
+    const add_task = this.http.post<Task>(`${this.domain}api/tasks`, newTask)
     .pipe(map(res => res));
 
     return add_task;
