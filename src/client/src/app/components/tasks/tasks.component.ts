@@ -9,14 +9,14 @@ import { Task } from 'src/app/Task';
 })
 export class TasksComponent implements OnInit {
 
-  tasks_list : Task[];
+  tasksList: Task[];
   title: string;
 
-  constructor(private taskserver: TasksService) { 
+  constructor(private taskserver: TasksService) {
     this.taskserver.getTasks()
     .subscribe(tasks => {
-      this.tasks_list = tasks
-    })
+      this.tasksList = tasks;
+    });
   }
 
   ngOnInit(): void {
@@ -33,8 +33,8 @@ export class TasksComponent implements OnInit {
 
     this.taskserver.addTask(newTask) // Se llama al servicio, al metodo y se le da el const
     .subscribe(task => {
-        this.tasks_list.push(task); //y( se pushea, agrega)
-        console.log(this.tasks_list);
+        this.tasksList.push(task); // y( se pushea, agrega)
+        console.log(this.tasksList);
     });
   }
 }

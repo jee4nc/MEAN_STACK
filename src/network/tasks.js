@@ -4,12 +4,12 @@ const router = require('express').Router();
 const mongojs = require('mongojs');
 //Se crea constante de mongojs, con nombre mean-db
 // [taks] es el nombre de la coleccion donde se guardarán
-const db = mongojs('mean-db', ['tasks']);
+const db = mongojs('mean-db', ['task']);
 
 
 
 router.get('/tasks', (req, res, next) => { // la ruta /taks
-    db.tasks.find((err, tasks) => {
+    db.task.find((err, tasks) => {
         if(err) return next(err);
         res.json(tasks);
     })
@@ -18,7 +18,7 @@ router.get('/tasks', (req, res, next) => { // la ruta /taks
 router.get('/tasks/:id', (req, res, next) => { // la ruta /taks
     // { _id: mongojs.ObjectID(req.params.id)} es el metodo para que devuelva
     //el objeto json, ya que monojs solo admite esto
-    db.tasks.findOne({ _id: mongojs.ObjectId(req.params.id)},(err, task) => {
+    db.task.findOne({ _id: mongojs.ObjectId(req.params.id)},(err, task) => {
         if(err) return next(err);
         res.json(task);
     })
@@ -39,7 +39,7 @@ router.post('/tasks', (req, res, next) => {
 });
 
 router.delete('/tasks/:id', (req, res, next) => {
-    db.tasks.remove({_id: mongojs.ObjectId(req.params.id)}, 
+    db.task.remove({_id: mongojs.ObjectId(req.params.id)}, 
     (err, result) => {
         if(err) return next(err);
             res.json(result);
@@ -61,7 +61,7 @@ router.delete('/task/:id', (req, res, next) => {
                 error: 'Error en update'
             });
         }else {
-            db.tasks.update({_id: mongojs.ObjectId(req.params.id)},
+            db.task.update({_id: mongojs.ObjectId(req.params.id)},
             (err, result) => {
                 if(err) return next(err);
                 res.json(result);
