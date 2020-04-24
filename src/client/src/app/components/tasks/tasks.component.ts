@@ -24,7 +24,6 @@ export class TasksComponent implements OnInit {
 
   addTask(event) { // Recibe el evento
     event.preventDefault();
-    console.log(this.title);
 
     const newTask: Task = { // se crea la constante de tipo TaskModel
       title: this.title,
@@ -34,7 +33,21 @@ export class TasksComponent implements OnInit {
     this.taskserver.addTask(newTask) // Se llama al servicio, al metodo y se le da el const
     .subscribe(task => {
         this.tasksList.push(task); // y( se pushea, agrega)
-        console.log(this.tasksList);
+        this.title = '';
+    });
+  }
+
+  deleteTask(id) {
+    const tasks = this.tasksList;
+    this.taskserver.deleteTask(id)
+    .subscribe(data => {
+      if (data.n === 1) {
+        for (let i = 0; i < tasks.length; i ++) {
+          if (tasks[i]._id === id) {
+            tasks.splice(i, 1);
+          }
+        }
+      }
     });
   }
 }

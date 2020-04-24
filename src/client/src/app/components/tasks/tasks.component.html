@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let task of tasks_list">
+        <tr *ngFor="let task of tasksList">
             <td>
                 <input type="checkbox">
             </td>
@@ -32,7 +32,8 @@
                 {{task.title}}
             </td>
             <td>
-                <button class="btn btn-danger">
+                <button class="btn btn-danger"
+                    (click)="deleteTask(task._id)">
                     <i class="fa fa-trash" ></i>
                 </button>
             </td>

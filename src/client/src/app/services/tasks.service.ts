@@ -26,7 +26,7 @@ export class TasksService {
   }
 
   deleteTask(id: string) {
-    const delTask = this.http.delete(`${this.domain}api/tasks${id}`).
+    const delTask = this.http.delete<Task>(`${this.domain}api/tasks/${id}`).
     pipe(map(res => res));
 
     return delTask;

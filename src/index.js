@@ -9,7 +9,7 @@ const tasksFile = require('./network/tasks');
 
 
 //STATIC
- app.use(express.static(path.join(__dirname, 'client_dist')))
+ app.use(express.static(path.join(__dirname, 'client_dist'))) // Aca se pone la carpeta
 
  // Integro la carpeta views para que express las pueda renderizas
 app.set('views', path.join(__dirname, 'views'));

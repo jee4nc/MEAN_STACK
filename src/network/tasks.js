@@ -46,7 +46,7 @@ router.delete('/tasks/:id', (req, res, next) => {
     })
 });
 
-router.delete('/task/:id', (req, res, next) => {
+router.put('/task/:id', (req, res, next) => {
     const datos = req.body;
     const updateTask = {};
 
